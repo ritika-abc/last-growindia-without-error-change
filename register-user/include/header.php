@@ -9,6 +9,7 @@ if (!isset($_SESSION["user_name"])) {
 <!DOCTYPE html>
 <html lang="en">
 <!--   -->
+
 <head>
     <a href="/b2b1-master/supplier-login.php"></a>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -33,7 +34,7 @@ if (!isset($_SESSION["user_name"])) {
     <link href="./gentelella-master/vendors/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!--  -->
 
     <style>
@@ -54,7 +55,18 @@ if (!isset($_SESSION["user_name"])) {
                 <div class="left_col scroll-view">
 
 
-
+                    <?php
+                    if (isset($_SESSION["user_id"])) {
+                        $user_id = $_SESSION["user_id"];
+                    }
+                    include "../config.php";
+                    $se = "SELECT * FROM `user` where `user_id`='$user_id'";
+                    $qu = mysqli_query($con, $se);
+                    while ($row = mysqli_fetch_array($qu)) {
+                        $status = $row['status'];
+                        echo $user_id = $row['user_id'];
+                    }
+                    ?>
 
                     <!-- menu profile quick info -->
                     <div class="profile clearfix">
@@ -80,7 +92,11 @@ if (!isset($_SESSION["user_name"])) {
                                         <li><a href="../register-user/add-product.php" class="active">Add Your Free Product</a></li>
                                         <li><a href="../register-user/view-product.php">View Your Product</a></li>
 
-                                        <li><a href="view-buyleads.php">All buyleads</a></li>
+                                        <?php echo ($status == '1') ? '<li><a href="view-buyleads.php"> Buyleads</a></li>' : '<li><a href="all-buyleads.php"> Buyleads</a></li>'; ?>
+
+
+
+                                        <!-- <li><a href="view-buyleads.php">All buyleads</a></li> -->
                                         <li><a href="show-buyleads.php">Access Buyleads</a></li>
                                     </ul>
                                 </li>

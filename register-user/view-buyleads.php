@@ -45,7 +45,12 @@ include "config.php";
                     }
             }
            
-           
+        //    
+
+        // $sql = "SELECT b.*, u.plan 
+        // FROM buyleads b
+        // JOIN users u ON b.user_id = u.user_id
+        // WHERE b.queiry_for LIKE '%" . $product_name . "%'";
             $sql = "SELECT * FROM  `buyleads` where  queiry_for  LIKE '%" . $product_name . "%'";
             $result = mysqli_query($con, $sql) or die("Query Failed.");
 
