@@ -21,17 +21,19 @@ if (isset($_POST['submit'])) {
     // $product_image2 = $_POST['product_image2'];
     // $product_image3 = $_POST['product_image3'];
     $cat_id = $_POST['cat_id'];
-    $sub_id = $_POST['sub_id'];
-    $micro_id = $_POST['micro_id'];
-    $inner_cat_id = $_POST['inner_cat_id'];
+   
     $product_description = $_POST['product_description'];
     $company_name = $_POST['company_name'];
-
+    $price = $_POST['price'];
+    $unit = $_POST['unit'];
+    $user_email = $_POST['user_email'];
+    $countries_name = $_POST['countries_name'];
+    $state_name = $_POST['state_name'];
     $img1 = $_FILES["img1"]["name"];
     $fld1 = "logo/" . $img1;
     // $fld2 = "upload/" . $image;
     move_uploaded_file($_FILES["img1"]['tmp_name'], $fld1);
-    $insert = "INSERT INTO `free-listing-product`(`product_name`,`product_description`, `cat_id`, `sub_id`,`micro_id`,`inner_cat_id`,`company_name`,`img1`) VALUES ('$product_name','$product_description','$cat_id','$sub_id','$micro_id','$inner_cat_id','$company_name','$fld1')";
+    $insert = "INSERT INTO `free-listing-product`(`product_name`,`product_description`,`cat_id`,`company_name`,`img1`,`unit`,`price`,`user_email`,`state_name`,`countries_name`) VALUES ('$product_name','$product_description','$cat_id','$company_name','$fld1','$unit','$price','$user_email','$state_name','$countries_name')";
 
     $query = mysqli_query($con, $insert);
 }
@@ -44,40 +46,62 @@ if (isset($_POST['submit'])) {
 
 
 
-<style>
+<!-- <style>
     input[type='file'] {
         opacity: 0
     }
-</style>
+</style> -->
 <div class="right_col" role="main">
     <div class="container">
+        
         <div class="row justify-content-center">
             <div class="col-10 bg-white p-4">
                 <form action="" method="post" enctype="multipart/form-data" class="text-capitalize">
                     <h5>Add Your products </h5>
+                    <img src="../image/logo.png" alt="">
                     <div class="row">
                         <div class="col-12 col-lg-6 my-2">
                             <label for="" class=" ">product name</label>
-                            <input type="text" name="product_name" class="form-control">
+                            <input type="text" name="product_name" class="form-control" required>
                         </div>
                         <div class="col-12 col-lg-6 my-2">
                             <label for="" class=" ">company name</label>
-                            <input type="text" name="company_name" class="form-control">
+                            <input type="text" name="company_name" class="form-control" required>
                         </div>
                         <div class="col-12 col-lg-6 my-2">
                             <label for=""> Product image </label>
                             <div class="row">
                                 <div class="col-12">
                                     <div class="border">
-                                        <input class="form-control" type="file" name="img1" id="formFile">
+                                        <input class="form-control" type="file" name="img1" id="formFile" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 my-2">
+                            <label for=""> Price </label>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="border">
+                                        <input class="form-control" type="text" name="price" id="formFile" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 my-2">
+                            <label for=""> Unit </label>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="border">
+                                        <input class="form-control" type="text" name="unit" id="formFile" required>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 col-lg-6 my-2 text-capitalize">
                             <label for=""> add Category</label>
-                            <select name="cat_id" class="form-control" id="category-dropdown">
-                                <option value="">------ Select Category -----</option>
+                            <select name="cat_id" class="form-control" id="category-dropdown" required>
+                                <option value="" >------ Select Category -----</option>
                                 <?php
                                 $sel = "SELECT * FROM `category`";
                                 $query = mysqli_query($con, $sel);
@@ -88,55 +112,41 @@ if (isset($_POST['submit'])) {
                                 <?php } ?>
                             </select>
                         </div>
+
+
+
+                        
                         <div class="col-12 col-lg-6 my-2">
-                            <label for=""> add Sub Category</label>
-                            <select name="sub_id" class="form-control" id="sub-category-dropdown">
-                                <option value="">------ Select Sub Category -----</option>
+                            <label for=""> User Email </label>
+                            <input type="text" name="user_email" class="form-control" required>
+                        </div>
+                        <div class="col-12 col-lg-6 my-2 text-capitalize">
+                            <label for=""> Add Countries</label>
+                            <select name="countries_name" class="form-control" id="category-dropdown">
+                                <option value="">------ Select Countries -----</option>
                                 <?php
-                                // $_SESSION['cat_id'] = $cat_id;
-
-                                $sel = "SELECT * FROM `sub_cat` ";
-
+                                $sel = "SELECT * FROM `countries`";
                                 $query = mysqli_query($con, $sel);
                                 while ($row = mysqli_fetch_array($query)) {
+                                    // $cat_id = $row['cat_id'];
                                 ?>
-                                    <option value="<?php echo $row['sub_id'] ?>" class="text-capitalize"><?php echo $row['sub_cat_name'] ?></option>
+                                    <option value="<?php echo $row['country_name'] ?>" class="text-capitalize"> <?php echo $row['country_name']  ?> </option>
                                 <?php } ?>
                             </select>
                         </div>
-                        <div class="col-12 col-lg-6 my-2">
-                            <label for="">add micro Category</label>
-                            <select name="inner_cat_id" class="form-control" id="inner-category-dropdown">
-                                <option value="">------ Select Inner Category -----</option>
+                        <div class="col-12 col-lg-6 my-2 text-capitalize">
+                            <label for=""> State Name</label>
+                            <select name="state_name" class="form-control" id="category-dropdown">
+                                <option value="">------ Select State Name -----</option>
                                 <?php
-                                $sel = "SELECT * FROM `inner_cat`";
+                                $sel = "SELECT * FROM `states`";
                                 $query = mysqli_query($con, $sel);
                                 while ($row = mysqli_fetch_array($query)) {
+                                    // $cat_id = $row['cat_id'];
                                 ?>
-                                    <option value="<?php echo $row['inner_cat_id'] ?>" class="text-capitalize"><?php echo $row['inner_cat_name'] ?></option>
-                                <?php
-                                }
-                                ?>
+                                    <option value="<?php echo $row['state_name'] ?>" class="text-capitalize"> <?php echo $row['state_name']  ?> </option>
+                                <?php } ?>
                             </select>
-                        </div>
-                        <div class="col-12 col-lg-6 my-2">
-                            <label for="">add micro Category</label>
-                            <select name="micro_id" class="form-control" id="micro-category-dropdown">
-                                <option value="">------ Select Micro Category -----</option>
-                                <?php
-                                $sel = "SELECT * FROM `micro`";
-                                $query = mysqli_query($con, $sel);
-                                while ($row = mysqli_fetch_array($query)) {
-                                ?>
-                                    <option value="<?php echo $row['micro_id'] ?>" class="text-capitalize"><?php echo $row['micro_name'] ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-                        </div>
-                        <div class="col-12 col-lg-6 my-2">
-                            <label for=""> Seller Location Country  and State   </label>
-                            <input type="text"  class="form-control">
                         </div>
 
                         <div class="col-12">
@@ -147,10 +157,6 @@ if (isset($_POST['submit'])) {
                             <label for="">Product Description</label>
                             <textarea name="product_description" rows="5" class="form-control" id=""></textarea>
                         </div>
-
-
-
-
                     </div>
                     <hr>
                     <!-- <div class="row my-4 border border-warning p-3 rounded">

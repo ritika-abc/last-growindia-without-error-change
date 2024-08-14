@@ -21,6 +21,7 @@ if (isset($_POST['submit'])) {
     $number = $_POST["number"];
     $queiry_for = $_POST["queiry_for"];
     $buyer_location = $_POST["buyer_location"];
+    $plan = $_POST["plan"];
  
 
     $sql = "INSERT INTO `limit_buylead`(`buyleads_id`, `user_email`,`user_id`,`buyer_email`,`number`,`queiry_for`,`buyer_name`,`buyer_location`) VALUES ('$buyleads_id','$user_email','$user_id','$buyer_email','$number','$queiry_for','$buyer_name','$buyer_location')";

@@ -2,6 +2,10 @@
 
 
 include_once "include/header.php";
+if (isset($_SESSION["user_email"])) {
+    $user_email = $_SESSION["user_email"];
+}
+// echo "<script>alert('Welcome : $user_email')</script>";
 
 ?>
 <!-- page content -->
@@ -27,11 +31,11 @@ include_once "include/header.php";
                 }
                 $offset = ($page - 1) * $limit;
                 /* select query of user table with offset and limit */
-                $sql = "SELECT * FROM `free-listing-product` ORDER BY 	pro_id DESC LIMIT {$offset},{$limit}";
+                $sql = "SELECT * FROM `free-listing-product` where `user_email` ='$user_email' ORDER BY 	pro_id DESC LIMIT {$offset},{$limit}";
                 $result = mysqli_query($con, $sql) or die("Query Failed.");
                 if (mysqli_num_rows($result) > 0) {
                 ?>
-                    <table class="table  table-striped table-light table text-capitalize">
+                    <table class="table  table-striped table-light table">
                         <thead>
                             <th>S.No.</th>
                             <th>Produc image</th>
@@ -39,6 +43,10 @@ include_once "include/header.php";
                             <th>company name</th>
                             <th>decsription</th>
                             <th>Location</th>
+                            <th>Price</th>
+                            <th>Unit</th>
+                            <th>Email</th>
+                            <th>Edit</th>
                           
                         </thead>
                         <tbody>
@@ -48,11 +56,15 @@ include_once "include/header.php";
                             ?>
                                 <tr>
                                     <td class='id'><?php echo $serial; ?></td>
-                                    <td><img src="<?php echo $row['img1']; ?>" height="100px" width="100px" alt=""></td>
-                                    <td><?php echo $row['product_name']; ?></td>
-                                    <td><?php echo $row['company_name']; ?></td>
-                                    <td><?php echo $row['product_description']; ?></td>
-                                    <td><?php echo $row['location']; ?></td>
+                                    <td ><a href="<?php echo $row['img1']; ?>" target="_blanck" ><img src="<?php echo $row['img1']; ?>" height="50px" width="50px" alt=""> <small>Image View</small></a></td>
+                                    <td class=" text-capitalize"><?php echo $row['product_name']; ?></td>
+                                    <td class=" text-capitalize"><?php echo $row['company_name']; ?></td>
+                                    <td class=" text-capitalize"><?php echo $row['product_description']; ?></td>
+                                    <td class=" text-capitalize"><?php echo $row['location']; ?></td>
+                                    <td class=" text-capitalize"> <?php echo $row['price']; ?></td>
+                                    <td  ><?php echo $row['unit']; ?></td>
+                                    <td><?php echo $row['user_email']; ?></td>
+                                    <td ><a href="update_product.php?pro_id=<?php echo $row['pro_id'] ?>" class="btn btn-success" title="Edit" ><i class="fa-regular fa-pen-to-square"></i></a> <a href="" title="Delete" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a> </td>
                                 </tr>
                             <?php
                                 $serial++;

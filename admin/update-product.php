@@ -52,7 +52,7 @@ if (isset($_POST['submit'])) {
     $company_address = $_POST['company_address'];
     $client_name = $_POST['client_name'];
     $long_dec = $_POST['long_dec'];
-    $about_company= $_POST['about_company'];
+    $about_company = $_POST['about_company'];
 
     // Handle image uploads
     $product_image1 = $row['product_image1'];
@@ -189,12 +189,12 @@ if (isset($_POST['submit'])) {
                 <label for="">client name</label>
                 <input type="text" name="client_name" value="<?php echo $client_name ?>" class="form-control mt-1">
             </div>
-            
 
-           
-            
-             
-             
+
+
+
+
+
             <div class="col-12 col-lg-6 my-2">
                 <!--<label for="">add state name </label>-->
                 <div class="  my-3 text-capitalize">
@@ -236,7 +236,6 @@ if (isset($_POST['submit'])) {
                         <option value="Lakshadweep" <?php if ($state_name == 'Lakshadweep') echo 'selected'; ?>>Lakshadweep</option>
                         <option value="Delhi" <?php if ($state_name == 'Delhi') echo 'selected'; ?>>Delhi</option>
                         <option value="Puducherry" <?php if ($state_name == 'Puducherry') echo 'selected'; ?>>Puducherry</option>
-
                     </select>
                 </div>
             </div>
