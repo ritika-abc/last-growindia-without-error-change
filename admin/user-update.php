@@ -21,6 +21,7 @@ while ($row = mysqli_fetch_array($query)) {
     $user_phone = $row['user_phone'];
     $company_name = $row['company_name'];
     $plan = $row['plan'];
+    $status = $row['status'];
     $expire = $row['expire'];
     $company_address = $row['company_address'];
     $state = $row['state'];
@@ -46,6 +47,7 @@ if (isset($_POST['submit'])) {
     $user_phone = $_POST['user_phone'];
     $company_name = $_POST['company_name'];
     $plan = $_POST['plan'];
+    $status = $_POST['status'];
     $expire = $_POST['expire'];
     $company_address = $_POST['company_address'];
     $state = $_POST['state'];
@@ -67,6 +69,7 @@ if (isset($_POST['submit'])) {
         `user_phone`='$user_phone',
         `company_name`='$company_name',
         `plan`='$plan',
+        `status`='$status',
         `expire`='$expire',
         `company_address`='$company_address',
         `state`='$state',
@@ -91,6 +94,7 @@ if (isset($_POST['submit'])) {
         `user_phone`='$user_phone',
         `company_name`='$company_name',
         `plan`='$plan',
+        `status`='$status',
         `expire`='$expire',
         `company_address`='$company_address',
         `state`='$state',
@@ -109,6 +113,18 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
+<!-- <style>
+    .bg2{
+        background-image: url('image/banner/4.jpg');
+        height: 70vh;
+        width: 100%;
+        background-size: cover;
+        background-position:center;
+    }
+</style> -->
+
+    <!-- Header Start -->
+   
 <!-- page content -->
 <div class="right_col  text-capitalize bg-white" role="main">
     <!-- top tiles -->
@@ -134,15 +150,22 @@ if (isset($_POST['submit'])) {
             <div class="col-12 col-md-4 my-3 text-capitalize">
                 <label for="">plan</label>
                 <select name="plan" class="form-control text-capitalize" id="">
-                    <option value="not-active" <?php if($plan == 'not-active') echo "selected"; ?>>not active</option>
-                    <option value="prime" <?php if($plan == 'prime') echo "selected"; ?>>Prime</option>
-                    <option value="prime-pro" <?php if($plan == 'prime-pro') echo "selected"; ?>>prime-pro</option>
-                    <option value="ultra" <?php if($plan == 'ultra') echo "selected"; ?>>ultra</option>
-                    <option value="ultra-pro" <?php if($plan == 'ultra-pro') echo "selected"; ?>>ultra-pro</option>
+                    <option value="not active" <?php if ($plan == 'not active') echo "selected"; ?>>Not active</option>
+                    <option value="prime" <?php if ($plan == 'prime') echo "selected"; ?>>Prime</option>
+                    <option value="prime-pro" <?php if ($plan == 'prime-pro') echo "selected"; ?>>prime-pro</option>
+                    <option value="ultra" <?php if ($plan == 'ultra') echo "selected"; ?>>ultra</option>
+                    <option value="ultra-pro" <?php if ($plan == 'ultra-pro') echo "selected"; ?>>ultra-pro</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-4 my-3 text-capitalize">
+                <label for="">Status</label>
+                <select name="status" class="form-control text-capitalize" id="">
+                    <option value="1" <?php if ($status == '1') echo "selected"; ?>> Active</option>
+                    <option value="0" <?php if ($status == '0') echo "selected"; ?>>Not Active</option>
                 </select>
             </div>
             <div class="col-12 col-md-2 my-3 text-capitalize">
-                <label for="">Plan start  Date</label>
+                <label for="">Plan start Date</label>
                 <input type="date" name="start_date" value="<?php echo $start_date ?>" class="form-control mt-1">
             </div>
             <div class="col-12 col-md-2 my-3 text-capitalize">

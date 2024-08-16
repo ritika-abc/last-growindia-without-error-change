@@ -25,25 +25,37 @@ include "config.php";
         // Check if the form is submitted
         if (isset($_GET['search_query'])) {
             // Retrieve the search query
-         ECHO   $search_query = $_GET["search_query"];
+            echo   $search_query = $_GET["search_query"];
 
             // Connect to your database (replace these variables with your actual database credentials)
             include "config.php";
 
             // Create connection
 
- 
 
-$sql = "SELECT* FROM `user` where `user_id`='$user_id'";
-$query = mysqli_query($con, $sql);
-while ($row2 = mysqli_fetch_array($query)) {
-    # to select all the data
 
-    $product_name  = $row2['product_name'];
-}
+            $sql = "SELECT* FROM `user` where `user_id`='$user_id'";
+            $query = mysqli_query($con, $sql);
+            while ($row2 = mysqli_fetch_array($query)) {
+                # to select all the data
+                $status = $row2['status'];
+                $product_name  = $row2['product_name'];
+            }
 
 
         ?>
+            <?php
+            // if (isset($_SESSION["user_id"])) {
+            //     $user_id = $_SESSION["user_id"];
+            // }
+            // include "../config.php";
+            // $se = "SELECT * FROM `user` where `user_id`='$user_id'";
+            // $qu = mysqli_query($con, $se);
+            // while ($row = mysqli_fetch_array($qu)) {
+            //     $status = $row['status'];
+            //     echo $user_id = $row['user_id'];
+            // }
+            ?>
 
             <div class="col-12 my-4">
 
@@ -62,14 +74,14 @@ while ($row2 = mysqli_fetch_array($query)) {
                     while ($row2 = $result->fetch_assoc()) {
                         // echo "<li>" . $row["product_name"] . "</li>"; // Display the result here
                 ?>
-                          <div class="col-12 my-3 ">
-                                 <div class="row">
+                        <div class="col-12 my-3 ">
+                            <div class="row">
                                 <div class="col-lg-9 ">
                                     <div class="buyleads_cards p-3 shadow-lg bg-white rounded border-start border-dark text-capitalize" style=" ">
                                         <!--<h6>Product Name : ?php echo $product_name ?></h6>-->
-                                        <h5 class=" " style="color :#2f3394;font-weight: bold;"><?php echo $row2['queiry_for'] ?> <img src="trusted.png" alt="" height="auto" width="10%">  </h5>
+                                        <h5 class=" " style="color :#2f3394;font-weight: bold;"><?php echo $row2['queiry_for'] ?> <img src="trusted.png" alt="" height="auto" width="10%"> </h5>
                                         <ul class="nav justify-content-between">
-                                            <li class="nav-item" title="<?php echo $row2['buyer_location'] ?>" > <i class="fa-solid fa-location-dot " style="color: #3fb635;margin-right:10px" ></i> <?php echo $row2['buyer_location'] ?> </li>
+                                            <li class="nav-item" title="<?php echo $row2['buyer_location'] ?>"> <i class="fa-solid fa-location-dot " style="color: #3fb635;margin-right:10px"></i> <?php echo $row2['buyer_location'] ?> </li>
                                             <li class="nav-item"><?php echo $row2['accessed_at'] ?></li>
                                         </ul>
                                         <div class="row mt-3 table-borderless">
@@ -77,7 +89,7 @@ while ($row2 = mysqli_fetch_array($query)) {
                                                 <table class="table p-0 m-0">
                                                     <tr class=" p-0 ">
                                                         <th class=" p-0 m-0  " style="color:#055faf;">Buyer Name :</th>
-                                                        <td class=" p-0 m-0" > <?php echo $row2['buyer_name'] ?></td>
+                                                        <td class=" p-0 m-0"> <?php echo $row2['buyer_name'] ?></td>
                                                     </tr>
                                                     <tr class=" p-0 ">
                                                         <th class=" p-0 m-0 " style="color:#055faf;">Quantity : </th>
@@ -91,21 +103,21 @@ while ($row2 = mysqli_fetch_array($query)) {
                                                 </table>
                                             </div>
                                             <div class="col-lg-6">
-                                              <table class="table p-0 m-0">
+                                                <table class="table p-0 m-0">
                                                     <tr class=" p-0 ">
                                                         <th class=" p-0 m-0  " style="color:#055faf;">Requirement :</th>
-                                                        <td class=" p-0 m-0" > <?php echo $row2['buyer_name'] ?></td>
+                                                        <td class=" p-0 m-0"> <?php echo $row2['buyer_name'] ?></td>
                                                     </tr>
                                                     <tr class=" p-0 ">
                                                         <th class=" p-0 m-0 " style="color:#055faf;">Buyer Email : </th>
                                                         <td class=" p-0 m-0 text-lowercase">**@gmail.com</td>
                                                     </tr>
-                                                    
+
                                                 </table>
                                             </div>
                                         </div>
                                         <div class="d-block mt-5 mb-3" style="border-top: 2px dotted gray;"></div>
-                                       <form method="POST" action="get_buylead.php">
+                                        <form method="POST" action="get_buylead.php">
                                             <input type="hidden" name="buyleads_id" value="<?php echo $row2['buyleads_id']; ?>">
                                             <input type="hidden" name="buyer_email" value="<?php echo $row2['buyer_email']; ?>">
                                             <input type="hidden" name="queiry_for" value="<?php echo $row2['queiry_for']; ?>">
@@ -113,16 +125,18 @@ while ($row2 = mysqli_fetch_array($query)) {
                                             <input type="hidden" name="buyer_name" value="<?php echo $row2['buyer_name']; ?>">
                                             <input type="hidden" name="buyer_location" value="<?php echo $row2['buyer_location']; ?>">
                                             <input type="hidden" name="accessed_at" value="<?php echo $row2['accessed_at']; ?>">
-                                            <button type="submit" class="btn btn-secondary text-center" style="width:200px;" name="submit"> Send Requirement</button>
-                                           
+                                            <!-- <button type="submit" class="btn btn-secondary text-center" style="width:200px;" name="submit"> Send Requirement</button> -->
+                                            <?php //echo ($status == '1') ? '<li><a href="view-buyleads.php"> Buyleads</a></li>' : '<li><a href="all-buyleads.php"> Buyleads</a></li>'; ?>
+                                            <?php  echo ($status == '1') ? '<button type="submit" class="btn btn-secondary text-center" style="width:200px;" name="submit"> Send Requirement  1 </button>' : '<a href="tel:" class="btn btn-secondary text-center" style="width:200px;" > Send Requirement 0 </a>'; ?>
+
                                         </form>
-                                     
+
                                     </div>
                                 </div>
                             </div>
-                           
-                     
-                    </div>
+
+
+                        </div>
             <?php
                     }
                     echo "</ul>";
@@ -137,7 +151,7 @@ while ($row2 = mysqli_fetch_array($query)) {
 
             </div>
 
-            
+
 
             <div class="row fixed-bottom">
                 <div class="col-12 bg-white">
