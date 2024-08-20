@@ -2,71 +2,72 @@
 <html lang="en">
 
 <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 
-        <link rel="stylesheet" href="http://growindiaexport.com/assets/css/megadrop.css">
-       <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-        <link rel="stylesheet" href="http://growindiaexport.com/assets/css/style.css">
-        <link rel="stylesheet" href="http://growindiaexport.com/assets/vendor/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css">
-        <link rel="stylesheet" href="http://growindiaexport.com/assets/vendor/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css">
-        <script src="http://growindiaexport.com/assets/vendor/OwlCarousel2-2.3.4/docs/assets/vendors/jquery.min.js"></script>
-        <script src="http://growindiaexport.com/assets/vendor/OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
- <link rel="stylesheet" href="fontawesome-free-6.5.2-web/css/all.min.css">
-        <style>
-                body {
-                        background-color: #fdfdfd !important;
-                        font-family: "Roboto", sans-serif;
-                }
-                 a{
-                    text-decoration:none !important;
-                }
-                .glp {
-    cursor: pointer;
-    font-size: 13px;
-    border-radius: 5px;
-    padding: 5px 10px;
-    color: #fff;
-    background: #fe670f;
-    background: linear-gradient(90deg, #fe670f 0%, #e93a1b 100%);
-}
+    <link rel="stylesheet" href="http://growindiaexport.com/assets/css/megadrop.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://growindiaexport.com/assets/css/style.css">
+    <link rel="stylesheet" href="http://growindiaexport.com/assets/vendor/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="http://growindiaexport.com/assets/vendor/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css">
+    <script src="http://growindiaexport.com/assets/vendor/OwlCarousel2-2.3.4/docs/assets/vendors/jquery.min.js"></script>
+    <script src="http://growindiaexport.com/assets/vendor/OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
+    <link rel="stylesheet" href="fontawesome-free-6.5.2-web/css/all.min.css">
+    <style>
+        body {
+            background-color: #fdfdfd !important;
+            font-family: "Roboto", sans-serif;
+        }
 
-        </style>
+        a {
+            text-decoration: none !important;
+        }
+
+        .glp {
+            cursor: pointer;
+            font-size: 13px;
+            border-radius: 5px;
+            padding: 5px 10px;
+            color: #fff;
+            background: #fe670f;
+            background: linear-gradient(90deg, #fe670f 0%, #e93a1b 100%);
+        }
+    </style>
 </head>
 
 <body>
 
-<?php include "navbar.php"; ?>
-        </section>
-        <!-- logo here -->
+    <?php include "navbar.php"; ?>
+    </section>
+    <!-- logo here -->
     <!-- breadcrumb start here -->
     <div class="container-fluid my-2">
-                <div class="row">
-                        <div class="col-12">
-                                <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
-                                        <ol class="breadcrumb">
-                                                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+        <div class="row">
+            <div class="col-12">
+                <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
 
-                                                <!--  -->
-                                                <?php
-                                                include "config.php";
-                                                $inner_cat_id = $_GET['inner_cat_id'];
-                                                $select = "SELECT * from `inner_cat` where `inner_cat_id`='$inner_cat_id'";
-                                                $qu = mysqli_query($con, $select);
-                                                $s_no = 1;
-                                                while ($row = mysqli_fetch_array($qu)) {
-                                                        //      $sub_id = $row['sub_id']; 
-                                                ?>
-                                                        <li class="breadcrumb-item"><?php echo $row['inner_cat_name'] ?></li>
+                        <!--  -->
+                        <?php
+                        include "config.php";
+                        $inner_cat_id = $_GET['inner_cat_id'];
+                        $select = "SELECT * from `inner_cat` where `inner_cat_id`='$inner_cat_id'";
+                        $qu = mysqli_query($con, $select);
+                        $s_no = 1;
+                        while ($row = mysqli_fetch_array($qu)) {
+                            //      $sub_id = $row['sub_id']; 
+                        ?>
+                            <li class="breadcrumb-item"><?php echo $row['inner_cat_name'] ?></li>
 
-                                                <?php } ?>
-                                        </ol>
-                                </nav>
-                        </div>
-                </div>
+                        <?php } ?>
+                    </ol>
+                </nav>
+            </div>
         </div>
-   
+    </div>
+
     <div class="container-fluid">
         <div class="row justify-content-around">
             <!-- view products -->
@@ -130,11 +131,11 @@
                         //     echo $id = $_GET['id'];
                         // }
                         if ($_GET['inner_cat_id'] && $_GET['state_name']) {
-                             $inner_cat_id = $_GET['inner_cat_id'];
-                             $state_name = $_GET['state_name'];
+                            $inner_cat_id = $_GET['inner_cat_id'];
+                            $state_name = $_GET['state_name'];
                             $select = "SELECT * from `product` where `inner_cat_id`='$inner_cat_id'  and    `state_name`='$state_name'";
                         } else {
-                             $inner_cat_id = $_GET['inner_cat_id'];
+                            $inner_cat_id = $_GET['inner_cat_id'];
 
                             $select = "SELECT * from `product` where `inner_cat_id`='$inner_cat_id'  ";
                         }
@@ -152,9 +153,9 @@
                                     <div class="row   border-info alert ">
                                         <div class="col-12 col-lg-3 my-2">
                                             <img src="./admin/<?php echo $row['product_image1'] ?>" class="rounded" height="200px" width="100%" style="object-fit: cover;" alt="">
-                                           <p class="btn btn-sm mt-2" title="<?php echo $row['company_address'] . " " . $row['state_name']  ?>"><i class="fa-solid fa-location-dot fa-fade mx-2" style="color: #23b110;"></i> <?php echo $row['state_name'] ?></p>
+                                            <p class="btn btn-sm mt-2" title="<?php echo $row['company_address'] . " " . $row['state_name']  ?>"><i class="fa-solid fa-location-dot fa-fade mx-2" style="color: #23b110;"></i> <?php echo $row['state_name'] ?></p>
                                         </div>
-                                        <div class="col-12 col-lg-5 my-2 text-capitalize" >
+                                        <div class="col-12 col-lg-5 my-2 text-capitalize">
                                             <div class="product_content" style="height: 300px;overflow-Y:scroll">
                                                 <ul class="nav mb-2">
                                                     <li class="nav-item me-auto"><?php echo $row['title'] ?></li>
@@ -167,19 +168,19 @@
                                                         <p class="p-0 m-0 mt-2 ">✔️ Product Specifications</p>
                                                     </a>
                                                     <table class="table  table-borderless ">
-                                                         <?php echo $row['product_description'] ?>
+                                                        <?php echo $row['product_description'] ?>
                                                     </table>
-                                                    
+
                                                 </div>
-                                                
+
                                                 <hr>
-                                                
+
                                             </div>
-                                                    <a href="tel: " class="btn  btn-primary"> <i class="fa-solid fa-phone fa-shake" style="color: #f4faf6;"></i> 5635635656</a>
+                                            <a href="tel: " class="btn  btn-primary"> <i class="fa-solid fa-phone fa-shake" style="color: #f4faf6;"></i> 5635635656</a>
                                         </div>
                                         <div class="col-12 col-lg-4 my-2  ">
                                             <table class="table table-bordered w-100   ">
-                                                <tr >
+                                                <tr>
                                                     <th> <small>Company Name</small> </th>
                                                     <td> <i><?php echo $row['company_name'] ?></i> </td>
                                                 </tr>
@@ -206,36 +207,38 @@
                                             </table>
                                             <a href="single-product.php?pro_id=<?php echo $row['pro_id'] ?>" class="btn btn-danger">👉🏻 Product Detals</a>
                                             <a href="" class="btn btn-secondary   " data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo  $s_no ?>">Enquiry</a>
-                                             <div class="modal fade" id="exampleModal<?php echo  $s_no ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="exampleModal<?php echo  $s_no ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                           <a target="_blank" href="<?php echo $row['website'] ?>"> <h1 class="modal-title fs-5" id="exampleModalLabel"><?php echo $row['website'] ?></h1></a>
+                                                            <a target="_blank" href="<?php echo $row['website'] ?>">
+                                                                <h1 class="modal-title fs-5" id="exampleModalLabel"><?php echo $row['website'] ?></h1>
+                                                            </a>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <form action="" method="post"> <!-- Move form tag here -->
                                                             <div class="modal-body">
-                                                               <div class="container">
-                                                                <div class="row">
-                                                                    <div class="col-lg-4">
-                                                                    <img src="./admin/<?php echo $row['product_image1'] ?>" class="rounded" height="200px" width="100%" style="object-fit: cover;" alt="">
-                                                                    </div>
-                                                                    <div class="col-lg-8">
-                                                                        
-                                                                        <input type="text" placeholder="Name" name="buyer_name" class="form-control my-2">
-                                                                        <input type="email" name="buyer_email" placeholder="Email" class="form-control my-2">
-                                                                        <input type="number" name="buyer_phone" placeholder="Number" class="form-control my-2">
-                                                                        <input type="text" name="enquiry_for" placeholder="Enquiry Product Name" value="<?php echo $title ?>" class="form-control my-2">
-                                                                       
+                                                                <div class="container">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-4">
+                                                                            <img src="./admin/<?php echo $row['product_image1'] ?>" class="rounded" height="200px" width="100%" style="object-fit: cover;" alt="">
+                                                                        </div>
+                                                                        <div class="col-lg-8">
+
+                                                                            <input type="text" placeholder="Name" name="buyer_name" class="form-control my-2">
+                                                                            <input type="email" name="buyer_email" placeholder="Email" class="form-control my-2">
+                                                                            <input type="number" name="buyer_phone" placeholder="Number" class="form-control my-2">
+                                                                            <input type="text" name="enquiry_for" placeholder="Enquiry Product Name" value="<?php echo $title ?>" class="form-control my-2">
+
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                               </div>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                <button type="submit" name="submit" class="btn btn-primary">Send Enquiry</button>  
+                                                                <button type="submit" name="submit" class="btn btn-primary">Send Enquiry</button>
                                                             </div>
-                                                        </form> 
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
@@ -243,7 +246,8 @@
                                     </div>
                                 </div>
                             </div>
-                        <?php $s_no++; } ?>
+                        <?php $s_no++;
+                        } ?>
 
 
                     </ul>
@@ -254,8 +258,8 @@
     </div>
 
 
-  <?php
-include "config.php";
+    <?php
+    include "config.php";
     if (isset($_POST['submit'])) {
         $buyer_name = $_POST['buyer_name'];
         $buyer_email = $_POST['buyer_email'];
@@ -263,8 +267,8 @@ include "config.php";
         $enquiry_for = $_POST['enquiry_for'];
         $ins = "INSERT INTO `buyer`(`buyer_name`,`buyer_email`,`buyer_phone`,`enquiry_for`) values ('$buyer_name','$buyer_email','$buyer_phone','$title')";
         $q = mysqli_query($con, $ins);
-        if($q){
-echo "<script>alert('Your Response Submitted')</script>";
+        if ($q) {
+            echo "<script>alert('Your Response Submitted')</script>";
         }
     }
     ?>
@@ -288,4 +292,4 @@ echo "<script>alert('Your Response Submitted')</script>";
             })
         })
     </script>
-<?php include "footer.php"; ?>
+    <?php include "footer.php"; ?>
