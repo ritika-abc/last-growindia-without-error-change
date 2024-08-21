@@ -12,6 +12,7 @@ if (isset($_GET['pro_id'])) {
 
     $product_name = $row['product_name'];
     $price = $row['price'];
+    $unit = $row['unit']; // d
     $product_description = $row['product_description'];
     $company_name = $row['company_name'];
     $moq = $row['moq'];
@@ -38,6 +39,8 @@ if (isset($_POST['submit'])) {
 
     $product_name = $_POST['product_name'];
     $price = $_POST['price'];
+    $state_name = $_POST['state_name'];
+    $unit = $_POST['unit'];
     $product_description = $_POST['product_description'];
     $company_name = $_POST['company_name'];
     $moq = $_POST['moq'];
@@ -88,6 +91,7 @@ if (isset($_POST['submit'])) {
     $sql = "UPDATE `product` SET 
             `product_name`='$product_name',
             `price`='$price',
+            `unit`='$unit',
             `product_description`='$product_description',
             `company_name`='$company_name',
             `moq`='$moq',
@@ -144,6 +148,10 @@ if (isset($_POST['submit'])) {
             <div class="col-12 col-md-4 my-3 text-capitalize">
                 <label for="">Price</label>
                 <input type="text" name="price" value="<?php echo $price ?>" class="form-control mt-1">
+            </div>
+            <div class="col-12 col-md-4 my-3 text-capitalize">
+                <label for="">Unit</label>
+                <input type="text" name="unit" value="<?php echo $unit ?>" class="form-control mt-1">
             </div>
             <div class="col-12 col-md-4 my-3 text-capitalize">
                 <label for="">Company Name</label>
